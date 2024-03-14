@@ -8,7 +8,7 @@ class User():
     elif algo == "B":
       return np.random.lognormal(3.01, .5, 1)[0]
     elif algo == "C":
-      return np.random.lognormal(3.04, .51, 1)[0]
+      return np.random.lognormal(3.08, .51, 1)[0]
     elif algo == "D":
       return np.random.lognormal(3, .49, 1)[0]
     
@@ -69,8 +69,9 @@ def get_lost_minutes(action_plays):
     if action == "C":
       actual_total+=C_play
     else:
-      optimal_total+=User.give_algorithm(action)
-  print("Over %s users, you were %s minutes from the optimal"%(len(action_plays),optimal_total))
+      actual_total+=User.give_algorithm(action)
+  diff = optimal_total - actual_total
+  print("Over %s users, your strategy was %s minutes from the optimal"%(len(action_plays),diff))
 
 def get_upper_confidence_bound(rewards, c):
   UCBs = {}
